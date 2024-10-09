@@ -41,7 +41,7 @@ function fixCSP () {
   const cspMetaElement = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
   if (!!cspMetaElement) return;
   
-  const cspContent = "default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com; img-src 'self' data: blob: https://*.whatsapp.net https://*.fbcdn.net https://*.tenor.co https://*.tenor.com https://*.giphy.com https://*.ytimg.com https://*.youtube.com https://maps.googleapis.com/maps/api/staticmap https://*.google-analytics.com https://api.betterttv.net/ https://cdn.betterttv.net/";
+  const cspContent = "default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com; img-src 'self' data: blob: http: https: https://*.whatsapp.net https://*.fbcdn.net https://*.tenor.co https://*.tenor.com https://*.giphy.com https://*.ytimg.com https://*.youtube.com https://maps.googleapis.com/maps/api/staticmap https://*.google-analytics.com https://api.betterttv.net/ https://cdn.betterttv.net/";
 
   const metaElement = document.createElement('meta');
   metaElement.httpEquiv = "Content-Security-Policy";
