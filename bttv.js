@@ -37,7 +37,23 @@ function replaceText (node) {
 // Start the recursion from the body tag.
 replaceText(document.body);
 
+function fixCSP () {
+  const cspMetaElement = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+  if (!!cspMetaElement) return;
+  
+  const cspContent = "default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com; img-src 'self' data: blob: https://*.whatsapp.net https://*.fbcdn.net https://*.tenor.co https://*.tenor.com https://*.giphy.com https://*.ytimg.com https://*.youtube.com https://maps.googleapis.com/maps/api/staticmap https://*.google-analytics.com https://api.betterttv.net/ https://cdn.betterttv.net/";
+
+  const metaElement = document.createElement('meta');
+  metaElement.httpEquiv = "Content-Security-Policy";
+  metaElement.content = cspContent;
+  
+  // To add this element to the document's head:
+  document.head.appendChild(metaElement);
+}
+
 const observer = new MutationObserver((mutations) => {
+  fixCSP();
+
   mutations.forEach((mutation) => {
     if (mutation.addedNodes && mutation.addedNodes.length > 0) {
       // This DOM change was new nodes being added. Run our substitution
